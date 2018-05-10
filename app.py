@@ -24,4 +24,4 @@ def random_number():
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(hotst='0.0.0.0',debug=True)
