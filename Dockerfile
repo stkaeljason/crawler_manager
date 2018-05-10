@@ -1,8 +1,8 @@
 FROM python:3.6
-#RUN apt-get install python3-pip
-RUN pip3 install pipenv
+MAINTAINER lushanjason
 RUN git clone https://github.com/stkaeljason/crawler_manager.git
-WORKDIR /crawler_manager 
+WORKDIR /crawler_manager
+COPY dist /crawler_manager/dist
+RUN pip3 install pipenv
 RUN pipenv install
 EXPOSE 5000
-#CMD python app.py

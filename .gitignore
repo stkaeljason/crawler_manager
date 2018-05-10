@@ -15,3 +15,5 @@ build
 log
 test.py
 .idea
+node_modules
+test
