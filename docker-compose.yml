@@ -4,12 +4,12 @@ services:
   web:
     build: .
     ports:
-     - "5000:5000"
-#    depends_on:
-#      - redis
+     - 5000:5000
+    depends_on:
+      - redis
+    command: pipenv run python app.py
 
-#  redis:
-#    image: "redis"
-#    ports:
-#      - 6379:6379
-  
+  redis:
+    image: "redis"
+    ports:
+      - 6379:6379
