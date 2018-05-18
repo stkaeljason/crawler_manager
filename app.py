@@ -1,3 +1,4 @@
+#coding:utf-8
 from random import randint
 
 from flask import Flask, render_template, jsonify
@@ -42,6 +43,14 @@ def random_number():
         'randomNumber': randint(1, 100)
     }
     return jsonify(response)
+
+
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin', '*')
+    response.headers.add(
+        'Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    return response
 
 
 if __name__ == '__main__':

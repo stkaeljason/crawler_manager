@@ -2,6 +2,7 @@
 <template>
   <div>
     <p>Home page hello</p>
+    <form></form>
     <p>Random number from backend: {{ randomNumber }}</p>
     <button @click="getRandom">New random number</button>
   </div>

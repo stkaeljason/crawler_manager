@@ -1,39 +1,43 @@
 <template>
-  <div class="statis">
+  <div class="container">
     <p>统计用户数据</p>
-    <el-form >
+    <el-form label-position="left" label-width="0px">
      <el-form-item label="状态" label-width="80px">
-        <el-select v-model="selected_state" placeholder="请选择状态">
+        <el-select v-model="selected_state" placeholder="请选择状态" label-position="top" label-width="0px">
          <el-option
           v-for="item in state_list"
           :value="item.status">
          </el-option>
         </el-select>
      </el-form-item>
-     <el-form-item label="图片数量" label-width="80px">
-      <el-select v-model="selected_counts">
-        <el-option
-          v-for="item in counts_list"
-          :value="item.num">
-        </el-option>
-      </el-select>
+     <el-form-item label="最小图片数量" label-width="80px" label-position="top">
+      <el-input v-model="left_counts">
+      </el-input>
+     </el-form-item>
+
+     <el-form-item label="最大图片数量" label-width="80px">
+       <el-input v-model="right_counts">
+       </el-input>
      </el-form-item>
 
      <el-form-item label="开始日期" label-width="80px" prop="activeStartTimeDate">
       <el-date-picker
-        v-model="date_value">
+        v-model="date_value"
+        format="yyyy-MM-dd"
+        value-format="yyyy-MM-dd">
       </el-date-picker>
      </el-form-item>
 
      <el-form-item label="开始时间" label-width="80px" prop="activeStartTimeTime">
       <el-time-select
-      v-model="time_value">
+      v-model="time_value"
+      format="HH:mm:ss"
+      value-format="HH:mm:ss">
       </el-time-select>
      </el-form-item>
-
     </el-form>
-    <p>统计结果: {{ statisNumber }}</p>
-    <button @click="getUserStatis">查询</button>
+    <p>统计结果:{{ statisNumber }}</p>
+    <button @click="getStatisNumber">查询</button>
   </div>
 </template>
 
@@ -44,7 +48,8 @@ export default {
     return {
       statisNumber: 0,
       selected_state: '',
-      selected_counts:'',
+      left_counts: '',
+      right_counts: '',
       date_value: '',
       time_value: '',
       state_list: [{
@@ -58,14 +63,6 @@ export default {
           status: 2
         },
       ],
-      counts_list: [{
-          value: 'state1',
-          num: '>40'
-        }, {
-          value: 'state2',
-          num: '1< and <40'
-        }
-      ],
     }
   },
   methods: {
@@ -75,22 +72,30 @@ export default {
   },
   getStatisNumber () {
     this.$http.get('http://localhost:5000/statis/statis_users',{
+      headers: {
+            'Access-Control-Allow-Origin': '*',
+        },
       params:{
         is_crawled:this.selected_state,
-        im_counts:this.selected_counts,
+        left_im_counts:this.left_counts,
+        right_im_counts:this.right_counts,
         date:this.date_value,
         time:this.time_value,
       }
     }).then(response => {
+      // console.log(response);
+      // var res = JSON.parse(response.bodyText)
+      // this.statisNumber = res['statis_result']
+      console.log(response.data.statis_result);
       this.statisNumber = response.data.statis_result
     }).catch(error => {
       console.log(error)
     })
   }
   },
-  created () {
-    this.getUserStatis()
-  }
+  // created () {
+  //   this.getUserStatis()
+  // }
 }
 </script>
 
@@ -107,6 +112,9 @@ li {
   margin: 0 10px;
 }
 a {
+  color: #42b983;
+}
+el-form {
   color: #42b983;
 }
 </style>
