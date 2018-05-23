@@ -72,9 +72,9 @@ export default {
   },
   getStatisNumber () {
     this.$http.get('http://localhost:5000/statis/statis_users',{
-      headers: {
-            'Access-Control-Allow-Origin': '*',
-        },
+      // headers: {
+      //       'Access-Control-Allow-Origin': '*',
+      //   },
       params:{
         is_crawled:this.selected_state,
         left_im_counts:this.left_counts,
