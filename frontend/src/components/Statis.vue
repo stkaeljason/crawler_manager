@@ -1,44 +1,40 @@
 <template>
-  <div class="container">
-    <p>统计用户数据</p>
-    <el-form label-position="left" label-width="0px">
-     <el-form-item label="状态" label-width="80px">
-        <el-select v-model="selected_state" placeholder="请选择状态" label-position="top" label-width="0px">
+  <!-- <div> -->
+  <el-form label-position="left" ref="form" :model="sizeForm" label-width="70px" style="width:500px">
+     <el-form-item label="状态">
+        <el-select v-model="selected_state" placeholder="请选择状态" style="width: 100%;">
          <el-option
           v-for="item in state_list"
           :value="item.status">
          </el-option>
         </el-select>
      </el-form-item>
-     <el-form-item label="最小图片数量" label-width="80px" label-position="top">
-      <el-input v-model="left_counts">
+     <el-form-item label="最小图片数量">
+      <el-input size="mini" v-model="left_counts">
       </el-input>
      </el-form-item>
-
-     <el-form-item label="最大图片数量" label-width="80px">
+     <el-form-item label="最大图片数量">
        <el-input v-model="right_counts">
        </el-input>
      </el-form-item>
-
-     <el-form-item label="开始日期" label-width="80px" prop="activeStartTimeDate">
+     <el-form-item label="开始日期" prop="activeStartTimeDate">
       <el-date-picker
         v-model="date_value"
         format="yyyy-MM-dd"
-        value-format="yyyy-MM-dd">
+        value-format="yyyy-MM-dd" style="width: 100%;">
       </el-date-picker>
      </el-form-item>
-
-     <el-form-item label="开始时间" label-width="80px" prop="activeStartTimeTime">
+     <el-form-item label="开始时间" prop="activeStartTimeTime">
       <el-time-select
       v-model="time_value"
       format="HH:mm:ss"
-      value-format="HH:mm:ss">
+      value-format="HH:mm:ss" style="width: 100%;">
       </el-time-select>
      </el-form-item>
-    </el-form>
+    <el-button @click="getStatisNumber">查询</el-button>
     <p>统计结果:{{ statisNumber }}</p>
-    <button @click="getStatisNumber">查询</button>
-  </div>
+  </el-form>
+<!-- </div> -->
 </template>
 
 <script>
@@ -115,6 +111,11 @@ a {
   color: #42b983;
 }
 el-form {
-  color: #42b983;
+  color: green;
+}
+.el-button{
+  color: white;
+  background-color: green;
+  border-color: black;
 }
 </style>

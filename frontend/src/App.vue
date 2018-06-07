@@ -1,9 +1,13 @@
 
 <template>
-  <div id="app">
-    <img src="./assets/logo.png">
-    <router-view/>
-  </div>
+  <!-- <link rel="shortcut icon" href="./assets/logo0.ico"> -->
+  <header>
+    <div id="app">
+      <link rel="shortcut icon" href="./assets/logo0.ico">
+      <img class="logo" src="./assets/flowler.jpg" style="height:100px" alt="Nav logo">
+      <router-view/>
+    </div>
+  </header>
 </template>
 
 <script>
@@ -20,5 +24,9 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+logo {
+  text-align: left;
 }
 </style>

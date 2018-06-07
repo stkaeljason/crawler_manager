@@ -1,10 +1,8 @@
 /* eslint-disable */
 <template>
   <div>
-    <p>Home page hello</p>
-    <form></form>
-    <p>Random number from backend: {{ randomNumber }}</p>
-    <button @click="getRandom">New random number</button>
+    <p>爬虫管理后台</p>
+    <a href="http://localhost:8080/statis">统计用户数据</a>
   </div>
 </template>
 
@@ -28,8 +26,8 @@ export default {
     })
   }
   },
-  created () {
-    this.getRandom()
-  }
+  // created () {
+  //   this.getRandom()
+  // }
 }
 </script>
